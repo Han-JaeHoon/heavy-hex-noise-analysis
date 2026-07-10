@@ -26,6 +26,34 @@ Figures are written to `figs/`.
 | `repro3_correlations.py` | Eq. (7), Fig. 20 | Detection-event correlation matrix shows the three predicted classes: **time-like (0.064) > space-like (0.040) > space-time-like (0.008) >> other (~0)**. |
 | `repro4_estimation.py` | Fig. 23 | Inhomogeneous per-mechanism noise probabilities are **recovered from correlations** via Eq. (7): median rel. error ~1% at 0.2% error rate, growing past ~1% error rate as higher-order terms break the approximation. |
 
+## Results
+
+### 1. Analytic change-rate formula vs simulation (Eq. 4 / Fig. 3)
+The closed-form change rate agrees with Monte-Carlo to shot-noise level
+(max |diff| = 0.0012), and the geometric `n_conseq` law is confirmed
+(fitted `q = 0.0334` vs theory `2p/3 = 0.0333`).
+
+![Reproduction 1](figs/repro1_change_rate.png)
+
+### 2. Repeated syndrome measurement, per-cycle change rate (Fig. 12)
+Uniform depolarizing gives low first/last cycles and a flat middle; Z-biased
+noise only shifts the level; a time-dependent (leakage-like) component
+reproduces the experimentally observed upward drift.
+
+![Reproduction 2](figs/repro2_repeated.png)
+
+### 3. Spatial-temporal correlations (Eq. 7 / Fig. 20)
+The detection-event correlation matrix recovers the three predicted error
+classes: time-like > space-like > space-time-like >> other.
+
+![Reproduction 3](figs/repro3_correlations.png)
+
+### 4. Inhomogeneous noise-parameter estimation from correlations (Fig. 23)
+Per-mechanism probabilities are recovered from the correlation matrix; accuracy
+is high below ~1% error rate and degrades above it.
+
+![Reproduction 4](figs/repro4_estimation.png)
+
 ## Method notes
 - Stabilizer-circuit simulation via **stim** (Pauli/biased noise, detector sampling).
 - The "analytic" change rate is computed from stim's **detector error model**:
